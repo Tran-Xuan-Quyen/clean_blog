@@ -28,3 +28,17 @@ BlogPost.findByIdAndUpdate(id, (error, blogpost) => {
 }, (error, blogpost) => {
     console.log(error, blogpost);
 })
+
+const Blog = new BlogPost(
+    {
+        title: 'hi',
+        body: 'nothing1234'
+    }
+);
+Blog.save(Blog)
+.then(() => {
+    //console.log(Blog);
+})
+.catch((error) => {
+    console.log(error);
+})
