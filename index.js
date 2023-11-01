@@ -44,9 +44,15 @@ app.get('/', homeController)
 //about
 const aboutControllers = require('./controllers/about.js');
 app.get('/about', aboutControllers)
+
 //contact
 const contactControllers = require('./controllers/contact.js');
-app.get('/contact', contactControllers)
+app.get('/contact', authMiddleware, contactControllers)
+
+// lay du lieu question
+const StoreQuestionController = require('./controllers/StoreQuestion.js')
+app.post('/contact/store',authMiddleware, StoreQuestionController);
+
 //post
 app.get('/post', homeController)
 
@@ -70,7 +76,8 @@ app.post('/posts/store', authMiddleware,StorePostControllers)
 
 // custom middleware khac
 const validateMiddleware = require('./controllers/validationMiddleware.js')
-app.use('/posts/new',validateMiddleware);
+app.use('/posts/new', validateMiddleware);
+app.use('/contact', validateMiddleware);
 
 //register
 const registerController = require('./controllers/register.js')
