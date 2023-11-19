@@ -1,44 +1,44 @@
-const mongoose = require('mongoose');
-const BlogPost = require('./models/BlogPost');
+// var mysql = require('mysql');
+// var express = require('express');
+// var app = express();
+// app.listen(4000, function(req, res) {
+//     console.log('listening on 3000');
+// }
+// )
+// var con = mysql.createConnection({
+//     host: '127.0.0.1',
+//     user: 'root',
+//     password: 'miinh23041998@',
+//     database: 'blog_database',
+// })
+// con.connect(function(err){
+//     if(err) throw err;
+//     console.log('connected');
+// })
 
-mongoose.connect('mongodb://localhost:27017/test_my_database')
+// var sql1 = "DROP TABLE IF EXISTS authen";
+// con.query(sql1, function(err,results) {
+//     if(err) throw err;
+//     console.log('done');
+// })
 
-BlogPost.create({
-    title: 'hello bạn',
-    body: 'bạn khỏe không'
-}, (error, blogpost) => {
-    console.log(error, blogpost);
-})
-//tạo document
-BlogPost.create({
-    title: 'hi',
-    body: 'nothing'
-}, (error, blogpost) => {
-    console.log(error, blogpost);
-})
-//find
-BlogPost.find({}, (error, blogpost) => {
-    console.log(error, blogpost);
-})
+const bcrypt = require('bcrypt');
+bcrypt.hash('23', 10).then(function(results) { console.log(results)});
+bcrypt.hash('23', 10).then(function(results) { console.log(results)});
 
-//update
-var id = "63b296a76a30bc41c34bfcf7";
-BlogPost.findByIdAndUpdate(id, (error, blogpost) => {
-    title: 'updated file'
-}, (error, blogpost) => {
-    console.log(error, blogpost);
-})
+// const express = require('express')
+// const morgan = require('morgan')
+// const handlebars = require('express-handlebars')
+// const app = express()
+// const port = 3000
 
-const Blog = new BlogPost(
-    {
-        title: 'hi',
-        body: 'nothing1234'
-    }
-);
-Blog.save(Blog)
-.then(() => {
-    //console.log(Blog);
-})
-.catch((error) => {
-    console.log(error);
-})
+// app.use(morgan('combined'))
+// app.engine('handlebars', handlebars.ExpressHandlebarsandlebars())
+
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
+
+// app.listen(port, () => {
+//   console.log(Example app listening on port `${port}`)
+// })

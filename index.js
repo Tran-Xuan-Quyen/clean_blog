@@ -1,15 +1,23 @@
 const express = require('express');
 const app = new express();
+const mysql = require('mysql');
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
-//tạo liên kết nodejs với mongoDB với Url bên dưới
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/my_database')
-
+//tạo liên kết nodejs với mysql
+var con = mysql.createConnection({
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'miinh23041998@',
+    database: 'blog_database',
+});
+con.connect((err) => { 
+    if(err) throw err; 
+    console.log('connected');
+})
 // Đăng kí thư mục public
 app.use(express.static('public'));
 
@@ -62,13 +70,13 @@ app.get('/auth/login', redirectAuthMiddleware, loginController)
 //logout
 const logoutController = require('./controllers/logout')
 app.get('/auth/logout',logoutController)
-//newpost
+//newpost   
 const newPostController = require('./controllers/newPost');
 app.get('/posts/new',authMiddleware, newPostController)
 
 //hien thi bai post
 const getPostController = require('./controllers/getPost.js');
-app.get('/post/:id',  getPostController)
+app.get('/post/:id', getPostController)
 
 //lay du lieu tren web ve
 const StorePostControllers = require('./controllers/StorePost.js');

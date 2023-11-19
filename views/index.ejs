@@ -23,7 +23,7 @@
                     <!-- Post preview-->
                     <% for(var i = 0; i < blogposts.length; i++) { %>
                     <div class = "post-preview">
-                        <a href="/post/<%= blogposts[i]._id %> ">
+                        <a href="/post/<%= blogposts[i].id %> ">
                             <h2 class="post-title">
                                 <%= blogposts[i].title %>
                             </h2>
@@ -32,8 +32,8 @@
                             </h3>
                         </a>
                         <p class="post-meta">Posted by
-                            <a href="#"><%=  blogposts[i].username %></a>
-                            on <%= blogposts[i].datePosted.toDateString() %>
+                            <a href="#"><%=  blogposts[i].user_id %></a>
+                            on <%= blogposts[i].created_at %>
                         </p>
                     </div>
                     <hr>
@@ -41,7 +41,9 @@
                     <!-- Divider-->
                     <hr class="my-4" />
                     <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                    <div class="d-flex justify-content-end mb-4">
+                        <a class="btn btn-primary text-uppercase" onclick="window.location.reload()">Older Posts →</a>
+                    </div>
                 </div>
             </div>
         </div>
