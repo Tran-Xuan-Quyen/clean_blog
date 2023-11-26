@@ -32,7 +32,7 @@ app.use(bodyParser.json({ type: 'application/json' }))
 app.use(bodyParser.raw());
 
 app.listen(4000, () => {
-    console.log(`Server is running at http://${app.get('host')}:${app.get('port')}`);
+    console.log(`Server is running at http://${process.env.APP_HOST}:${process.env.APP_PORT}`);
 })
 
 //import module express-session
