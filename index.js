@@ -48,7 +48,6 @@ app.use("*", (req, res, next) => {
 
 //check login
 
-
 // app.post('/users/login',redirectAuthMiddleware, loginUserController)
 app.post('/users/login', loginUserController.login);
 
