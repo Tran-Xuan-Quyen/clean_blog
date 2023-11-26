@@ -1,31 +1,5 @@
-// const mongoose = require('mongoose');
-// const Schema = mongoose.Schema;
-// const QuestionSchema = new Schema({
-//     user_id: String,
-//     EmailAddress: String,
-//     PhoneNumber: String,
-//     Message: String,
-//     DatePosted: {
-//         type: Date,
-//         default: new Date(),
-//     }
-// })
-// const Question = mongoose.model('Question', QuestionSchema);
-// module.exports = Question;
-
-const mysql = require('mysql');
+const databases = require('../config/database.js');
 const CommonModel = require("./CommonModel.js")
-
-var con = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'miinh23041998@',
-    database: 'blog_database',
-});
-con.connect((err) => { 
-    if(err) throw err; 
-    console.log('connected');
-})
 
 class Questions extends CommonModel {
     getTableName() {

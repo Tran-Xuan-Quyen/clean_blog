@@ -3,7 +3,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
+DROP TABLE IF EXISTS `blog_post`;
 CREATE TABLE `blog_post` (
   `id` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
@@ -31,15 +31,13 @@ INSERT INTO `blog_post` (`id`, `title`, `body`, `user_id`,`image`, `created_id`,
 -- --------------------------------------------------------
 
 -- Table structure for table `authen`
-
+DROP TABLE IF EXISTS `authen`;
 CREATE TABLE `authen` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `accessToken` varchar(500) NOT NULL,
   `refreshToken` varchar(500) NOT NULL,
-  `value_service` varchar(100) NOT NULL,
-  `create_at` datetime NOT NULL,
-  `delete_flag` int(11) NOT NULL
+  `create_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -47,12 +45,10 @@ CREATE TABLE `authen` (
 -- Dumping data for table `authen`
 --
 
-INSERT INTO `authen` (`id`, `user_id`, `accessToken`, `refreshToken`, `value_service`, `create_at`, `delete_flag`) VALUES
-(0, 0, 'fiuiwfafiweifiweuf', 'fiuiwfafiweifiweuf', 'ET2031', '2023-04-02 00:25:12', 0),
-(1, 1, 'gewafklewfiwfegdrf', 'gewafklewfiwfegdrf', 'ET3310', '2023-04-02 00:00:00', 0),
-(2, 2, 'iuksvueffuedrudkdg', 'iuksvueffuedrudkdg', 'SSH1151', '2023-04-02 07:30:00', 0),
-(3, 3, 'fhjksdfueuwfwifure', 'fhjksdfueuwfwifure', 'ET2100', '2023-04-03 04:00:00', 0);
+INSERT INTO `authen` (`id`, `user_id`, `accessToken`, `refreshToken`, `create_at`) VALUES
+(0, 0, 'fiuiwfafiweifiweuf', 'fiuiwfafiweifiweuf', '2023-04-02 00:25:12');
 
+DROP TABLE IF EXISTS `questions`;
 CREATE TABLE `questions` (
     `id` int(11) NOT NULL,
     `username` varchar(255) NOT NULL,
@@ -75,6 +71,7 @@ INSERT INTO `questions` (`id`, `username`, `email_address`, `phone_number`, `mes
 
 
 -- --------------------------------------------------------
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,

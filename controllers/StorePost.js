@@ -3,7 +3,8 @@ const path = require('path')
 const User = require('../models/User.js')
 module.exports = (req, res) => {
     let image = req.files.image;
-    image.mv(path.resolve(__dirname, '/public/uploads',image.name),async function(err) {
+    console.log(image);
+    image.mv(path.resolve(__dirname, '/public/upload', image.name), async function(err) {
         let data = {};
         data.title = req.body.title,
         data.body = req.body.body,
@@ -15,7 +16,6 @@ module.exports = (req, res) => {
         data.update_id = 0,
         data.delete_flag = 0,
         data.old_id = 0;
-
         await BlogPost.insertDatatoDB(data, BlogPost.getTableName())
         .then((con) => {
             if(con) {
@@ -26,8 +26,6 @@ module.exports = (req, res) => {
         })
         .catch((err) => { console.log("insert failed", err)});
     })
-
-
     // var ObjectId = require('mongodb').ObjectId;
     // req.session.userId = new ObjectId(req.session.userId);
     // image.mv(path.resolve(__dirname, '/public/upload', image.name), function(err) {

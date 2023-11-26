@@ -44,6 +44,16 @@ class CommonModel {
         }
         catch(err) { console.error(err); return false; }
 
-}
+    }
+    async dropDatabyId(id, table) {
+        try {
+            if(id && table) {
+                await knex(table).where({id: id}).delete();
+                return true;
+            }
+            else return false;
+        }
+        catch(err) {console.log(err); return false; }
+    }
 }
 module.exports = CommonModel;

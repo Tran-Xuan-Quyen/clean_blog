@@ -1,5 +1,5 @@
 const User = require('../models/User')
 module.exports = (req, res, next) => {
-    if(req.session.userId) return res.redirect('/')
+    if(req.headers.token) return res.redirect('/')
     next()
 }

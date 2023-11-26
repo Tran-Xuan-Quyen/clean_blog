@@ -1,22 +1,10 @@
-const mysql = require('mysql');
+const database = require('../config/database.js')
 const CommonModel = require("./CommonModel.js")
-
-var con = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'miinh23041998@',
-    database: 'blog_database',
-});
-con.connect((err) => { 
-    if(err) throw err; 
-    console.log('connected');
-})
 
 class BlogPost extends CommonModel {
     getTableName() {
         return 'blog_post';
     }
-
     getAllData() {
         return `SELECT * FROM blog_post where delete_flag = 0`;
     }
@@ -32,12 +20,6 @@ class BlogPost extends CommonModel {
 }
 
 module.exports = new BlogPost;
-
-
-
-
-
-
 
 
 

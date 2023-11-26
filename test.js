@@ -22,9 +22,9 @@
 //     console.log('done');
 // })
 
-const bcrypt = require('bcrypt');
-bcrypt.hash('23', 10).then(function(results) { console.log(results)});
-bcrypt.hash('23', 10).then(function(results) { console.log(results)});
+// const bcrypt = require('bcrypt');
+// bcrypt.hash('23', 10).then(function(results) { console.log(results)});
+// bcrypt.hash('23', 10).then(function(results) { console.log(results)});
 
 // const express = require('express')
 // const morgan = require('morgan')
@@ -42,3 +42,29 @@ bcrypt.hash('23', 10).then(function(results) { console.log(results)});
 // app.listen(port, () => {
 //   console.log(Example app listening on port `${port}`)
 // })
+
+const path = require('path');
+const express = require('express')
+const app = express()
+const http = require('http');
+const port = 3000;
+
+app.get('/',(req,res) => {
+    res.send("Something")
+})
+
+app.get('/home',(req,res) => {
+    res.send("Home page")
+})
+
+app.get('/search',(req,res) => {
+    res.send("Search Page")
+})
+
+app.get('/pdf', (req,res) => {
+    res.sendFile(path.resolve(__dirname, './views/index.html'))
+})
+
+app.listen(port, () =>{
+    console.log(`App listening on port ${port}`)
+})

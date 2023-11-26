@@ -1,31 +1,32 @@
 const BlogPost = require('../models/BlogPost.js')
 const User = require('../models/User.js')
-module.exports = async (req, res) => {
+const knex = require('../config/knex.js')
+module.exports =  async (req, res) => {
 
-    let sql = BlogPost.displaybyId(req.params.id);
-    await BlogPost.queryDB(sql)
+    await knex.raw(BlogPost.displaybyId(req.params.id))
     .then(async (data) => {
-        if(data){
-        let sql1 = User.displaybyId(data[0].id);
-        let data1 = {}; 
-        data1 = await User.queryDB(sql1);
-        let detailPost = {};
-        detailPost.title = data[0].title;
-        detailPost.body = data[0].body;
-        detailPost.created_at = data[0].created_at;
-        detailPost.username = data1[0].user_name;
-        res.render('post', {detailPost});
+        if(data[0]){
+            console.log(data[0][0]);
+            await knex.raw(User.displaybyId(data[0][0].user_id))
+            .then((data1) => {
+                if(!data1) throw err; 
+                let detailPost = {};
+                detailPost.image = data[0][0].image;
+                detailPost.title = data[0][0].title;
+                detailPost.body = data[0][0].body;
+                detailPost.created_at = data[0][0].created_at;
+                detailPost.username = data1[0][0].user_name;
+                res.render('post', {detailPost});
+            })
         }
+        else res.status(404).json({
+            success: false,
+            message: 'invalid user'
+        })
     })
-    // let sql1 = User.displaybyId(data[0].id);
-    // let data1 =  User.queryDB(sql1);
-    // let detailPost = {};
-    // detailPost.title = data[0].title;
-    // detailPost.body = data[0].body;
-    // detailPost.created_at = data[0].created_at;
-    // detailPost.username = data1[0].user_name;
-    // res.render('post', {detailPost});
-    // BlogPost.findById(req.params.id, function(error, detailPost) {
-    //     res.render('post', {detailPost});
-    // })
+    .catch(err => {
+        res.status(404).json({
+            success: false,
+            message: 'error'
+    })});
 }
