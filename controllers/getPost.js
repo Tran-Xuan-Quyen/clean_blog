@@ -10,12 +10,14 @@ module.exports =  async (req, res) => {
             await knex.raw(User.displaybyId(data[0][0].user_id))
             .then((data1) => {
                 if(!data1) throw err; 
+                console.log(data1[0]);
                 let detailPost = {};
                 detailPost.image = data[0][0].image;
                 detailPost.title = data[0][0].title;
                 detailPost.body = data[0][0].body;
                 detailPost.created_at = data[0][0].created_at;
                 detailPost.username = data1[0][0].user_name;
+                console.log(detailPost);
                 res.render('post', {detailPost});
             })
         }
@@ -25,6 +27,7 @@ module.exports =  async (req, res) => {
         })
     })
     .catch(err => {
+        console.log(err);
         res.status(404).json({
             success: false,
             message: 'error'

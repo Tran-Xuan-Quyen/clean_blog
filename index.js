@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const expressSession = require('express-session');
 
+
 const authMiddleware = require('./controllers/authMiddleware')
 const redirectAuthMiddleware = require('./controllers/redirectAuthMiddleware')
 const loginUserController = require('./controllers/loginUser.js')
@@ -26,6 +27,7 @@ const storeUserController = require('./controllers/storeUser.js')
 app.set('view engine', 'ejs');
 app.use(fileUpload());
 app.use(express.static('public'));
+//app.use(express.static(__dirname, 'public'));
 //use body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }))
@@ -42,7 +44,7 @@ app.use(expressSession({
 ///
 global.loggedin = null;
 app.use("*", (req, res, next) => {
-    loggedin = req.session.user_Id;
+    loggedin = req.session.userId;
     next();
 })
 
@@ -50,57 +52,33 @@ app.use("*", (req, res, next) => {
 
 // app.post('/users/login',redirectAuthMiddleware, loginUserController)
 app.post('/users/login', loginUserController.login);
-
-
 //home
-
 app.get('/', homeController)
 //about
-
 app.get('/about',authMiddleware, aboutControllers)
-
 //contact
-
 app.get('/contact', authMiddleware, contactControllers)
-
 // lay du lieu question
-
 app.post('/contact/store',authMiddleware, StoreQuestionController);
-
 //post
 app.get('/post', homeController)
-
 //login
 app.get('/auth/login', redirectAuthMiddleware, loginController)
 //logout
-
 app.get('/auth/logout',logoutController)
 //newpost   
-
 app.get('/posts/new',authMiddleware, newPostController)
-
 //hien thi bai post
-
 app.get('/post/:id', getPostController)
-
 //lay du lieu tren web ve
-
 app.post('/posts/store', authMiddleware,StorePostControllers)
-
 // custom middleware khac
-
 app.use('/posts/new', validateMiddleware);
 app.use('/contact', validateMiddleware);
-
 //register
-
 app.get('/auth/register', redirectAuthMiddleware, registerController);
-
 //lay du lieu username_password user
-
 app.post('/users/register',redirectAuthMiddleware, storeUserController)
-
-
 app.use((req, res) => {
     res.render('notfound')
 })

@@ -1,9 +1,13 @@
 const BlogPost = require('../models/BlogPost.js')
 const path = require('path')
 const User = require('../models/User.js')
+const multer = require('multer');
+const upload = multer({dest: './public/upload'})
+
 module.exports = (req, res) => {
     let image = req.files.image;
     console.log(image);
+    upload.single('image');
     image.mv(path.resolve(__dirname, '/public/upload', image.name), async function(err) {
         let data = {};
         data.title = req.body.title,
@@ -26,18 +30,4 @@ module.exports = (req, res) => {
         })
         .catch((err) => { console.log("insert failed", err)});
     })
-    // var ObjectId = require('mongodb').ObjectId;
-    // req.session.userId = new ObjectId(req.session.userId);
-    // image.mv(path.resolve(__dirname, '/public/upload', image.name), function(err) {
-    //     User.findOne( { _id :  req.session.userId}, (err, user) => {
-    //         BlogPost.create({
-    //             user_id: user.username,
-    //             title: req.body.title,
-    //             body: req.body.body,    
-    //             image: '/upload/' + image.name, }, function(error, blogpost) {
-    //             res.redirect('/')
-    //         })
-    //     });
-       
-    // })
 }

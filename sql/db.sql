@@ -28,6 +28,7 @@ INSERT INTO `blog_post` (`id`, `title`, `body`, `user_id`,`image`, `created_id`,
 (3, 'new_days_4', 'khogn nhieu thu de noi', 3, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
 (4, 'new_days_5', 'khogn nhieu thu de noi', 2, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
 (5, 'new_days_6', 'khogn nhieu thu de noi', 1, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0);
+(6, 'COMBATING INVASIVE PLANTS IN PUBLIC LANDS!​', 'Combating Invasive Plants in Public Lands! Crew Member Lucero holding tool Week 2 of the Saguaro Conservation Corps means getting on your hands and knees to pull out Bufflegrass (Pennisetum ciliare). What is an invasive species? It is an organism that was introduced to a habitat due...', 4, 'aloooo', 1, '2023-04-02 00:23:', 1, '2023-04-02 00:23:', 0, 0)
 -- --------------------------------------------------------
 
 -- Table structure for table `authen`
