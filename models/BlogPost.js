@@ -6,10 +6,10 @@ class BlogPost extends CommonModel {
         return 'blog_post';
     }
     getAllData() {
-        return `SELECT * FROM blog_post where delete_flag = 0`;
+        return `SELECT * FROM blog_post`;
     }
     displaybyId(id) {
-        return `SELECT * FROM blog_post where id = ${id} and delete_flag = 0`;
+        return `SELECT * FROM blog_post where id = ${id}`;
     }
     convertToDate(date) {
         let dateParts = date.split("/");

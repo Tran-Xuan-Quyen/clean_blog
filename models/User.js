@@ -4,10 +4,10 @@ const CommonModel = require('./CommonModel.js');
 class User extends CommonModel {
     getTableName() { return 'user'; }
     getALLData() {
-        return `SELECT * FROM user where delete_flag = 0`;
+        return `SELECT * FROM user `;
     }
     displaybyId(id) { 
-        return `SELECT * FROM user where id = ${id} and delete_flag = 0`;
+        return `SELECT * FROM user where id = ${id} `;
     }
     findOnebyName(username){
         return `SELECT * FROM user where user_name = '${username}'`;

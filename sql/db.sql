@@ -6,8 +6,8 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `blog_post`;
 CREATE TABLE `blog_post` (
   `id` int(11) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `body` varchar(100) NOT NULL,
+  `title` varchar(20000) NOT NULL,
+  `body` varchar(200000) NOT NULL,
   `user_id` int(11) NOT NULL,
   `image` varchar(100) NOT NULL,
   `created_id` int(11) NOT NULL,
@@ -27,9 +27,9 @@ INSERT INTO `blog_post` (`id`, `title`, `body`, `user_id`,`image`, `created_id`,
 (2, 'new_days_3', 'khogn nhieu thu de noi', 2, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
 (3, 'new_days_4', 'khogn nhieu thu de noi', 3, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
 (4, 'new_days_5', 'khogn nhieu thu de noi', 2, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
-(5, 'new_days_6', 'khogn nhieu thu de noi', 1, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0);
+(5, 'new_days_6', 'khogn nhieu thu de noi', 1, 'aloooo', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
 (6, 'COMBATING INVASIVE PLANTS IN PUBLIC LANDS!​', 'Combating Invasive Plants in Public Lands! Crew Member Lucero holding tool Week 2 of the Saguaro Conservation Corps means getting on your hands and knees to pull out Bufflegrass (Pennisetum ciliare). What is an invasive species? It is an organism that was introduced to a habitat due...', 4, 'aloooo', 1, '2023-04-02 00:23:', 1, '2023-04-02 00:23:', 0, 0)
--- --------------------------------------------------------
+;-- --------------------------------------------------------
 
 -- Table structure for table `authen`
 DROP TABLE IF EXISTS `authen`;
@@ -95,6 +95,31 @@ INSERT INTO `user` (`id`, `user_name`,`password`,`created_id`, `created_at`, `up
 (2, 'tranquyen151203', '$2b$10$Dq1oa33qmrJmho5WRgfQ0ujuW4NiuiwJ6mRb/PFSEys4NIwwmvVx6', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
 (3, '123', '$2b$10$EMcRT2bkDOKakKkAby9VFehJKVk3uZZWEF756FJKH2LR7wMuQv4cq', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0);
 --
+
+
+DROP TABLE IF EXISTS `userInfo`;
+CREATE TABLE `userInfo` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `email` varchar(255),
+  `PhoneNumber` varchar(13),
+  `image` varchar(255),
+  `history_id` varchar(255),
+  `fullname` varchar(255),
+  `created_id` int(11),
+  `created_at` datetime ,
+  `update_id` int(11),
+  `update_at` datetime,
+  `delete_flag` int(11),
+  `old_id` int(11) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `userInfo` (`id`, `user_id`,`email`,`PhoneNumber`,`image`,`fullname`, `history_id`, `created_id`, `created_at`, `update_id`, `update_at`, `delete_flag`, `old_id`) VALUES
+(0, '0','a', 'a', 'a', 'a', 'Nguyễn Văn A',1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0 ),
+(1, '1','a', 'a', 'a', 'a', 'Nguyễn Văn B',1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
+(2, '2','a', 'a', 'a', 'a', 'Nguyễn Văn C', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0),
+(3, '3', 'a', 'a', 'a', 'a','Nguyễn Văn D', 1, '2023-04-02 00:23:44', 1, '2023-04-02 00:23:54', 0, 0);
+--
 -- Indexes for table `blog_post`
 --
 ALTER TABLE `blog_post`
@@ -110,6 +135,9 @@ ALTER TABLE `authen`
 -- Indexes for table `user`
 
 ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+  
+ALTER TABLE `userInfo`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `questions`
@@ -131,6 +159,10 @@ ALTER TABLE `authen`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
+
+ALTER TABLE `userInfo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
+
 
 ALTER TABLE `questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;

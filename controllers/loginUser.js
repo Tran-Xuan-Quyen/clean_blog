@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 
 class loginController{
     async login(req, res){
+        //console.log(req);
         await User.queryDB(User.findOnebyName(req.body.username))
         .then((user) => {
             if(user[0]) {

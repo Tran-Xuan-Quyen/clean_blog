@@ -6,10 +6,10 @@ class Questions extends CommonModel {
         return 'blog_post';
     }
     getAllData() {
-        return `SELECT * FROM blog_post where deleted_flag = 0`;
+        return `SELECT * FROM blog_post`;
     }
     displaybyId(id) {
-        return `SELECT * FROM blog_post where id = ${id} and delete_flag = 0`;
+        return `SELECT * FROM blog_post where id = ${id}`;
     }
 }
 

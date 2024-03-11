@@ -23,8 +23,8 @@ class CommonModel {
                     bcrypt.hash(dataInsert.password, 10, async (err, hash) => {
                         if(err) throw err;
                         dataInsert.password = hash;
-                        await knex(table).insert(dataInsert);
-                        return true;
+                        let data = await knex(table).insert(dataInsert);
+                        return data[0];
                     })
                 }
                 else await knex(table).insert(dataInsert);
